@@ -343,6 +343,85 @@
     footer .footer-inst { margin-bottom: 24px; }
     footer .divider { margin: 0 12px; }
 
+
+    /* ─── FEEDBACK FORM ─── */
+    #feedback { background: var(--mid); }
+    .feedback-wrapper {
+      max-width: 720px;
+    }
+    .form-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+    }
+    @media(max-width:600px){ .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label {
+      font-size: 0.75rem; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .form-input, .form-textarea, .form-select {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 16px;
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: rgba(0,180,255,0.5);
+      box-shadow: 0 0 0 3px rgba(0,180,255,0.08);
+    }
+    .form-textarea { resize: vertical; min-height: 110px; }
+    .form-select option { background: var(--panel); color: var(--text); }
+    .rating-group { display: flex; gap: 8px; }
+    .rating-btn {
+      flex: 1; padding: 10px 6px; background: var(--panel);
+      border: 1px solid var(--border); border-radius: 8px;
+      color: var(--muted); font-size: 0.82rem; cursor: pointer;
+      transition: all 0.2s; text-align: center;
+    }
+    .rating-btn:hover, .rating-btn.active {
+      border-color: var(--fire); color: var(--fire);
+      background: rgba(255,77,0,0.08);
+    }
+    .submit-btn {
+      width: 100%; padding: 14px; margin-top: 8px;
+      background: linear-gradient(135deg, var(--fire), #FF8A00);
+      border: none; border-radius: 12px;
+      color: white; font-family: 'Syne', sans-serif;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      letter-spacing: 0.03em;
+    }
+    .submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .form-note {
+      font-size: 0.75rem; color: var(--muted); margin-top: 12px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .success-msg {
+      display: none; background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.3); border-radius: 12px;
+      padding: 20px 24px; margin-top: 16px;
+      color: #22C55E; font-size: 0.9rem; text-align: center;
+    }
+    .error-msg {
+      display: none; background: rgba(255,77,0,0.08);
+      border: 1px solid rgba(255,77,0,0.25); border-radius: 12px;
+      padding: 16px 20px; margin-top: 12px;
+      color: var(--fire); font-size: 0.85rem;
+    }
+    .token-note {
+      background: rgba(0,180,255,0.06); border: 1px solid rgba(0,180,255,0.15);
+      border-radius: 10px; padding: 14px 18px; margin-bottom: 28px;
+      font-size: 0.82rem; color: #7ab8d4; line-height: 1.6;
+    }
+    .token-note code {
+      background: rgba(0,180,255,0.12); padding: 2px 7px;
+      border-radius: 4px; font-family: monospace; font-size: 0.8rem;
+      color: var(--electric);
+    }
+
     /* ─── SCROLL ANIMATIONS ─── */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -359,6 +438,7 @@
     <li><a href="#components">Design</a></li>
     <li><a href="#results">Results</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#feedback">Feedback</a></li>
   </ul>
 </nav>
 
@@ -417,7 +497,7 @@
       <div class="member-name">Samarth Sanjay Mole</div>
       <div class="member-role">Electrical Engineering</div>
       <div class="member-contact">
-        <a href="mailto:samarthmole2005@gmail.com">samarthmole2005@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#acdfcdc1cdded8c4c1c3c0c99e9c9c99eccbc1cdc5c082cfc3c1"><span class="__cf_email__" data-cfemail="6a190b070b181e020705060f585a5a5f2a0d070b030644090507">[email&#160;protected]</span></a>
         <a href="tel:9730210051">+91 97302 10051</a>
       </div>
     </div>
@@ -426,7 +506,7 @@
       <div class="member-name">Rahul Nagesh Jadhav</div>
       <div class="member-role">Electrical Engineering</div>
       <div class="member-contact">
-        <a href="mailto:rj479279@gmail.com">rj479279@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#483a227c7f717a7f71082f25292124662b2725"><span class="__cf_email__" data-cfemail="f6849cc2c1cfc4c1cfb6919b979f9ad895999b">[email&#160;protected]</span></a>
         <a href="tel:7498577010">+91 74985 77010</a>
       </div>
     </div>
@@ -435,7 +515,7 @@
       <div class="member-name">Rohini Jalindar Walke</div>
       <div class="member-role">Electrical Engineering</div>
       <div class="member-contact">
-        <a href="mailto:rohiniwalke2005@gmail.com">rohiniwalke2005@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#c4b6abacadaaadb3a5a8afa1f6f4f4f184a3a9a5ada8eaa7aba9"><span class="__cf_email__" data-cfemail="ee9c8186878087998f82858bdcdededbae89838f8782c08d8183">[email&#160;protected]</span></a>
         <a href="tel:9975371154">+91 99753 71154</a>
       </div>
     </div>
@@ -444,7 +524,7 @@
       <div class="member-name">Rohan Dadaso More</div>
       <div class="member-role">Electrical Engineering</div>
       <div class="member-contact">
-        <a href="mailto:morerohan1748@gmail.com">morerohan1748@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#fb9694899e8994939a95cacccfc3bb9c969a9297d5989496"><span class="__cf_email__" data-cfemail="7d10120f180f12151c134c4a49453d1a101c1411531e1210">[email&#160;protected]</span></a>
         <a href="tel:9579690558">+91 95796 90558</a>
       </div>
     </div>
@@ -453,7 +533,7 @@
       <div class="member-name">Sonali Ashok Salunkhe</div>
       <div class="member-role">Faculty Guide</div>
       <div class="member-contact">
-        <a href="mailto:sonaliasalunkhe@coep.sveri.ac.in">sonaliasalunkhe@coep.sveri.ac.in</a>
+        <a href="/cdn-cgi/l/email-protection#52213d3c333e3b3321333e273c393a3712313d37227c212437203b7c33317c3b3c"><span class="__cf_email__" data-cfemail="cdbea2a3aca1a4acbeaca1b8a3a6a5a88daea2a8bde3bebba8bfa4e3acaee3a4a3">[email&#160;protected]</span></a>
         <a href="tel:8421714373">+91 84217 14373</a>
       </div>
     </div>
@@ -462,7 +542,7 @@
       <div class="member-name">Mohan Thakre</div>
       <div class="member-role">Walchand College of Engineering, Sangli</div>
       <div class="member-contact">
-        <a href="mailto:mohanthakre@gmail.com">mohanthakre@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#fd9092959c9389959c968f98bd9a909c9491d39e9290"><span class="__cf_email__" data-cfemail="ff9290979e918b979e948d9abf98929e9693d19c9092">[email&#160;protected]</span></a>
       </div>
     </div>
   </div>
@@ -681,6 +761,98 @@
   </div>
 </section>
 
+
+<!-- FEEDBACK SECTION -->
+<section id="feedback">
+  <p class="section-label reveal">Feedback</p>
+  <h2 class="reveal">Share Your Thoughts</h2>
+  <p class="section-intro reveal">Your feedback is saved directly to our GitHub repository as an issue — no extra database needed.</p>
+
+  <div class="feedback-wrapper reveal">
+    <div class="token-note">
+      ⚙️ <strong>Setup required once:</strong> To enable feedback saving, create a GitHub Personal Access Token with <code>issues: write</code> permission and add it as a repository secret named <code>FEEDBACK_TOKEN</code>, then paste it in the field below. Or simply enter your token once — it stays in your browser only.
+      <br/><br/>
+      Get token: <a href="https://github.com/settings/tokens/new?scopes=public_repo&description=Portfolio+Feedback" target="_blank" style="color:var(--electric)">github.com/settings/tokens</a> → Select <code>public_repo</code> scope.
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Your Name *</label>
+        <input type="text" id="fb-name" class="form-input" placeholder="e.g. Dr. Rajesh Patil" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" id="fb-email" class="form-input" placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Role / Designation</label>
+        <input type="text" id="fb-role" class="form-input" placeholder="e.g. Professor, Industry Expert" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Organisation</label>
+        <input type="text" id="fb-org" class="form-input" placeholder="e.g. SVERI CoE, COEP" />
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Feedback Category</label>
+        <select id="fb-category" class="form-select">
+          <option value="General Feedback">General Feedback</option>
+          <option value="Technical Comment">Technical Comment</option>
+          <option value="Suggestion / Improvement">Suggestion / Improvement</option>
+          <option value="Question">Question</option>
+          <option value="Appreciation">Appreciation</option>
+          <option value="Collaboration Interest">Collaboration Interest</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Overall Rating</label>
+        <div class="rating-group" id="ratingGroup">
+          <div class="rating-btn" data-val="1">⭐ 1</div>
+          <div class="rating-btn" data-val="2">⭐ 2</div>
+          <div class="rating-btn" data-val="3">⭐ 3</div>
+          <div class="rating-btn" data-val="4">⭐ 4</div>
+          <div class="rating-btn active" data-val="5">⭐ 5</div>
+        </div>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Your Feedback *</label>
+        <textarea id="fb-message" class="form-textarea" placeholder="Write your detailed feedback, suggestions, or questions here..."></textarea>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">🔑 GitHub Token (stays in your browser only)</label>
+        <input type="password" id="fb-token" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+      </div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="submitFeedback()">
+      Submit Feedback → Save to GitHub
+    </button>
+
+    <div class="success-msg" id="successMsg">
+      ✅ Feedback submitted successfully! It has been saved as a GitHub Issue in the repository.<br/>
+      <a href="https://github.com/molesuraj08/hybrid-geyser-portfolio/issues" target="_blank" style="color:#22C55E; text-decoration:underline; font-size:0.82rem; margin-top:6px; display:inline-block;">View all feedback on GitHub →</a>
+    </div>
+    <div class="error-msg" id="errorMsg"></div>
+
+    <p class="form-note">
+      🔒 Your GitHub token is never stored on any server — it only goes from your browser directly to the GitHub API.
+    </p>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+  <p class="section-label reveal">Conclusion</p>
+  <h2 class="reveal">Final Thoughts</h2>
+  <p class="section-intro reveal">A smart, sustainable, and future-ready approach to modern water-heating needs.</p>
+  <div class="conclusion-card reveal">
+    <p>The Dual-Source Hybrid Water Geyser project effectively tackles the typical issues encountered by conventional water heating systems. Traditional geysers rely on a single energy source, which frequently causes problems during gas shortages or power outages. By integrating electricity and LPG into a single, intelligent system, this project guarantees a steady supply of hot water regardless of which source is available.</p>
+    <br/>
+    <p>The system is dependable, effective, and user-safe due to automatic switching, appropriate safety features, and efficient thermal insulation. Performance analysis, reliability comparison, and cost evaluation demonstrate that the hybrid system is more flexible and reliable than single-source geysers — with ~98% availability vs ~70% for electric-only systems.</p>
+    <br/>
+    <p>This project provides a straightforward but effective solution for home and small commercial applications, with increased availability, improved energy management, and practical viability. Overall, it represents a modern and intelligent approach toward safe, flexible, and efficient water-heating technology.</p>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-title">Dual-Source Hybrid Water Geyser</div>
@@ -698,16 +870,120 @@
 </footer>
 
 <script>
-  // Scroll reveal
+  // ─── SCROLL REVEAL ───
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => observer.observe(el));
+
+  // ─── RATING BUTTONS ───
+  let selectedRating = 5;
+  document.querySelectorAll('.rating-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedRating = parseInt(btn.dataset.val);
+    });
+  });
+
+  // ─── SUBMIT FEEDBACK → GITHUB ISSUES ───
+  async function submitFeedback() {
+    const name     = document.getElementById('fb-name').value.trim();
+    const email    = document.getElementById('fb-email').value.trim();
+    const role     = document.getElementById('fb-role').value.trim();
+    const org      = document.getElementById('fb-org').value.trim();
+    const category = document.getElementById('fb-category').value;
+    const message  = document.getElementById('fb-message').value.trim();
+    const token    = document.getElementById('fb-token').value.trim();
+
+    const errEl = document.getElementById('errorMsg');
+    const okEl  = document.getElementById('successMsg');
+    errEl.style.display = 'none';
+    okEl.style.display  = 'none';
+
+    if (!name)    { showErr('⚠️ Please enter your name.'); return; }
+    if (!message) { showErr('⚠️ Please write your feedback.'); return; }
+    if (!token)   { showErr('⚠️ Please enter your GitHub token to save feedback.'); return; }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    const stars = '⭐'.repeat(selectedRating);
+    const now   = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+    const issueTitle = `[Feedback] ${category} — ${name} (${stars})`;
+    const issueBody  = `## 📋 Portfolio Feedback
+
+| Field       | Details |
+|-------------|---------|
+| **Name**     | ${name} |
+| **Email**    | ${email || '—'} |
+| **Role**     | ${role || '—'} |
+| **Organisation** | ${org || '—'} |
+| **Category** | ${category} |
+| **Rating**   | ${stars} (${selectedRating}/5) |
+| **Submitted**| ${now} |
+
+---
+
+### 💬 Feedback
+
+${message}
+
+---
+*Submitted via Portfolio Feedback Form*`;
+
+    try {
+      const resp = await fetch(
+        'https://api.github.com/repos/molesuraj08/hybrid-geyser-portfolio/issues',
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `token ${token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            title: issueTitle,
+            body: issueBody,
+            labels: ['feedback']
+          })
+        }
+      );
+
+      if (resp.ok) {
+        const data = await resp.json();
+        okEl.style.display = 'block';
+        document.getElementById('fb-name').value    = '';
+        document.getElementById('fb-email').value   = '';
+        document.getElementById('fb-role').value    = '';
+        document.getElementById('fb-org').value     = '';
+        document.getElementById('fb-message').value = '';
+        document.getElementById('fb-token').value   = '';
+        btn.textContent = '✅ Submitted!';
+      } else {
+        const err = await resp.json();
+        showErr(`GitHub API Error: ${err.message}. Check your token has public_repo scope.`);
+        btn.disabled = false;
+        btn.textContent = 'Submit Feedback → Save to GitHub';
+      }
+    } catch(e) {
+      showErr('Network error. Please check your internet connection and try again.');
+      btn.disabled = false;
+      btn.textContent = 'Submit Feedback → Save to GitHub';
+    }
+  }
+
+  function showErr(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.style.display = 'block';
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 </script>
 </body>
 </html>

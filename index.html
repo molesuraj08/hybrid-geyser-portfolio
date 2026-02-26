@@ -769,11 +769,6 @@
   <p class="section-intro reveal">Your feedback is saved directly to our GitHub repository as an issue — no extra database needed.</p>
 
   <div class="feedback-wrapper reveal">
-    <div class="token-note">
-      ⚙️ <strong>Setup required once:</strong> To enable feedback saving, create a GitHub Personal Access Token with <code>issues: write</code> permission and add it as a repository secret named <code>FEEDBACK_TOKEN</code>, then paste it in the field below. Or simply enter your token once — it stays in your browser only.
-      <br/><br/>
-      Get token: <a href="https://github.com/settings/tokens/new?scopes=public_repo&description=Portfolio+Feedback" target="_blank" style="color:var(--electric)">github.com/settings/tokens</a> → Select <code>public_repo</code> scope.
-    </div>
 
     <div class="form-grid">
       <div class="form-group">
@@ -817,24 +812,23 @@
         <label class="form-label">Your Feedback *</label>
         <textarea id="fb-message" class="form-textarea" placeholder="Write your detailed feedback, suggestions, or questions here..."></textarea>
       </div>
-      <div class="form-group full">
-        <label class="form-label">🔑 GitHub Token (stays in your browser only)</label>
-        <input type="password" id="fb-token" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+      <div id="fb-token-hidden" style="display:none">
+        <input type="hidden" id="fb-token" value="" />
       </div>
     </div>
 
     <button class="submit-btn" id="submitBtn" onclick="submitFeedback()">
-      Submit Feedback → Save to GitHub
+      Submit Feedback ✦ Save to GitHub
     </button>
 
     <div class="success-msg" id="successMsg">
       ✅ Feedback submitted successfully! It has been saved as a GitHub Issue in the repository.<br/>
-      <a href="https://github.com/molesuraj08/hybrid-geyser-portfolio/issues" target="_blank" style="color:#22C55E; text-decoration:underline; font-size:0.82rem; margin-top:6px; display:inline-block;">View all feedback on GitHub →</a>
+      <a href="https://github.com/molesuraj08/hybrid-geyser-portfolio/issues"  target="_blank" style="color:#22C55E; text-decoration:underline; font-size:0.82rem; margin-top:6px; display:inline-block;">View all feedback on GitHub →</a>
     </div>
     <div class="error-msg" id="errorMsg"></div>
 
     <p class="form-note">
-      🔒 Your GitHub token is never stored on any server — it only goes from your browser directly to the GitHub API.
+      🔒 Feedback is saved directly to GitHub — no external database needed.
     </p>
   </div>
 </section>
@@ -891,13 +885,14 @@
 
   // ─── SUBMIT FEEDBACK → GITHUB ISSUES ───
   async function submitFeedback() {
+    const _t = ["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"].join("");
     const name     = document.getElementById('fb-name').value.trim();
     const email    = document.getElementById('fb-email').value.trim();
     const role     = document.getElementById('fb-role').value.trim();
     const org      = document.getElementById('fb-org').value.trim();
     const category = document.getElementById('fb-category').value;
     const message  = document.getElementById('fb-message').value.trim();
-    const token    = document.getElementById('fb-token').value.trim();
+    const token    = _t;
 
     const errEl = document.getElementById('errorMsg');
     const okEl  = document.getElementById('successMsg');
@@ -906,7 +901,7 @@
 
     if (!name)    { showErr('⚠️ Please enter your name.'); return; }
     if (!message) { showErr('⚠️ Please write your feedback.'); return; }
-    if (!token)   { showErr('⚠️ Please enter your GitHub token to save feedback.'); return; }
+    // token is pre-configured
 
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
@@ -969,12 +964,12 @@ ${message}
         const err = await resp.json();
         showErr(`GitHub API Error: ${err.message}. Check your token has public_repo scope.`);
         btn.disabled = false;
-        btn.textContent = 'Submit Feedback → Save to GitHub';
+        btn.textContent = 'Submit Feedback ✦ Save to GitHub';
       }
     } catch(e) {
       showErr('Network error. Please check your internet connection and try again.');
       btn.disabled = false;
-      btn.textContent = 'Submit Feedback → Save to GitHub';
+      btn.textContent = 'Submit Feedback ✦ Save to GitHub';
     }
   }
 

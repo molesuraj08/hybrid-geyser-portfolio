@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dual-Source Hybrid Water Geyser — Project Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --fire: #FF4D00;
+      --electric: #00B4FF;
+      --dark: #0A0C0F;
+      --mid: #12161C;
+      --panel: #181D25;
+      --border: rgba(255,255,255,0.06);
+      --text: #E8EDF5;
+      --muted: #7A8494;
+      --accent-glow: rgba(255,77,0,0.18);
+      --electric-glow: rgba(0,180,255,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background: rgba(10,12,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 5%;
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; }
+    .nav-logo span:first-child { color: var(--fire); }
+    .nav-logo span:last-child { color: var(--electric); }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a { text-decoration: none; color: var(--muted); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    nav ul a:hover { color: var(--text); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+      padding: 120px 5% 80px;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,77,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,180,255,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 0.75rem; color: var(--muted); margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 5.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    h1 .fire { color: var(--fire); }
+    h1 .elec { color: var(--electric); }
+
+    .hero-sub {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      margin-bottom: 48px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .tag {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 6px; padding: 6px 14px;
+      font-size: 0.78rem; color: var(--muted);
+    }
+
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 32px;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat-val {
+      font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--fire), var(--electric));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-lbl { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 100px 5%; }
+    section:nth-child(even) { background: var(--mid); }
+
+    .section-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+      color: var(--fire); text-transform: uppercase; margin-bottom: 12px;
+    }
+    h2 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      margin-bottom: 16px; line-height: 1.15;
+    }
+    .section-intro {
+      color: var(--muted); font-weight: 300; max-width: 640px;
+      margin-bottom: 56px; font-size: 1rem;
+    }
+
+    /* ─── ABSTRACT ─── */
+    .abstract-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 16px; padding: 40px;
+      position: relative; overflow: hidden;
+      max-width: 900px;
+    }
+    .abstract-card::before {
+      content: '"';
+      position: absolute; top: -20px; left: 24px;
+      font-size: 120px; font-family: 'Syne', sans-serif;
+      color: var(--fire); opacity: 0.08; line-height: 1;
+    }
+    .abstract-card p { color: var(--muted); font-size: 0.97rem; line-height: 1.8; margin-bottom: 20px; }
+    .abstract-card p:last-child { margin-bottom: 0; }
+    .kw-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .kw { background: rgba(255,77,0,0.1); border: 1px solid rgba(255,77,0,0.2); color: var(--fire); border-radius: 100px; padding: 4px 14px; font-size: 0.75rem; }
+
+    /* ─── TEAM ─── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .team-card {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px 24px; transition: border-color 0.25s, transform 0.25s;
+    }
+    .team-card:hover { border-color: rgba(255,77,0,0.4); transform: translateY(-4px); }
+    .member-no {
+      font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700;
+      color: var(--fire); letter-spacing: 0.1em; margin-bottom: 12px;
+    }
+    .member-name {
+      font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .member-role {
+      font-size: 0.78rem; color: var(--muted); margin-bottom: 16px;
+    }
+    .member-contact a {
+      display: block; font-size: 0.78rem; color: var(--electric);
+      text-decoration: none; margin-bottom: 4px; word-break: break-all;
+    }
+    .member-contact a:hover { text-decoration: underline; }
+
+    /* ─── PROBLEM & SOLUTION ─── */
+    .prob-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    @media(max-width:768px){ .prob-grid { grid-template-columns: 1fr; } }
+    .prob-card {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px 24px; display: flex; align-items: flex-start; gap: 16px;
+    }
+    .prob-icon {
+      font-size: 1.5rem; width: 44px; height: 44px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,77,0,0.08); border-radius: 10px;
+    }
+    .prob-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; }
+    .prob-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── COMPONENTS ─── */
+    .comp-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px;
+    }
+    .comp-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 18px;
+      transition: border-color 0.2s;
+    }
+    .comp-card:hover { border-color: rgba(0,180,255,0.4); }
+    .comp-num { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700; color: var(--electric); letter-spacing: 0.12em; margin-bottom: 8px; }
+    .comp-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; }
+    .comp-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ─── SPECS ─── */
+    .spec-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;
+    }
+    .spec-card {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px 24px;
+    }
+    .spec-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .spec-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text); }
+
+    /* ─── PERFORMANCE ─── */
+    .perf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media(max-width:768px){ .perf-grid { grid-template-columns: 1fr; } }
+    .perf-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 14px; padding: 32px 24px; text-align: center;
+    }
+    .perf-number {
+      font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--fire), var(--electric));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+    .perf-unit { font-size: 1rem; color: var(--muted); margin-bottom: 12px; }
+    .perf-label { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; }
+    .perf-desc { font-size: 0.78rem; color: var(--muted); }
+
+    /* ─── COMPARISON BAR ─── */
+    .compare-block { max-width: 640px; }
+    .compare-row { margin-bottom: 24px; }
+    .compare-header { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 8px; }
+    .compare-name { color: var(--text); font-weight: 500; }
+    .compare-pct { color: var(--muted); }
+    .bar-bg { background: rgba(255,255,255,0.05); border-radius: 100px; height: 8px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 100px; transition: width 1.2s ease; }
+    .bar-fire { background: linear-gradient(90deg, var(--fire), #FF8A00); }
+    .bar-elec { background: linear-gradient(90deg, #5B6AFF, var(--electric)); }
+    .bar-hybrid { background: linear-gradient(90deg, var(--fire), var(--electric)); }
+
+    /* ─── METHODOLOGY STEPS ─── */
+    .steps { max-width: 760px; position: relative; }
+    .steps::before {
+      content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, var(--fire), var(--electric));
+      opacity: 0.25;
+    }
+    .step { display: flex; gap: 24px; margin-bottom: 40px; }
+    .step-dot {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 800;
+      background: var(--panel); border: 1px solid rgba(255,77,0,0.4);
+      color: var(--fire); position: relative; z-index: 1;
+    }
+    .step-content { padding-top: 6px; }
+    .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+    .step-body { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── ADVANTAGES ─── */
+    .adv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .adv-card {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px 24px; transition: border-color 0.2s, transform 0.2s;
+    }
+    .adv-card:hover { border-color: rgba(0,180,255,0.35); transform: translateY(-4px); }
+    .adv-icon { font-size: 1.6rem; margin-bottom: 14px; }
+    .adv-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; margin-bottom: 8px; }
+    .adv-body { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── APPLICATIONS ─── */
+    .app-section-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .app-section-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 24px;
+    }
+    .app-section-title {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .app-section-icon { font-size: 1.2rem; }
+    .app-list { list-style: none; }
+    .app-list li {
+      font-size: 0.82rem; color: var(--muted); padding: 6px 0;
+      border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
+    }
+    .app-list li:last-child { border-bottom: none; }
+    .app-list li::before { content: '→'; color: var(--electric); flex-shrink: 0; }
+
+    /* ─── MATH ─── */
+    .math-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media(max-width:768px){ .math-grid { grid-template-columns: 1fr; } }
+    .math-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 24px;
+    }
+    .math-heading { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 18px; font-size: 1rem; }
+    .math-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .math-row:last-child { border-bottom: none; }
+    .math-param { color: var(--muted); }
+    .math-val { font-weight: 600; color: var(--text); font-family: 'Syne', sans-serif; }
+
+    /* ─── CONCLUSION ─── */
+    .conclusion-card {
+      background: linear-gradient(135deg, rgba(255,77,0,0.08), rgba(0,180,255,0.08));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 52px 48px;
+      max-width: 860px;
+    }
+    .conclusion-card p { color: var(--muted); font-size: 0.97rem; line-height: 1.85; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); border-top: 1px solid var(--border);
+      padding: 48px 5%; text-align: center;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    footer .footer-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text); margin-bottom: 12px; }
+    footer .footer-inst { margin-bottom: 24px; }
+    footer .divider { margin: 0 12px; }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>LPG</span> + <span>⚡</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#components">Design</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge"><span></span> Research Project — SVERI's College of Engineering, Pandharpur</div>
+  <h1>Dual-Source<br/><span class="fire">Hybrid</span> Water<br/><span class="elec">Geyser</span></h1>
+  <p class="hero-sub">A smart water-heating system that combines LPG and electricity into a single intelligent unit — ensuring uninterrupted hot water with 98% availability, automatic source switching, and enhanced safety.</p>
+  <div class="hero-tags">
+    <div class="tag">Hybrid Heating</div>
+    <div class="tag">Auto Source Switching</div>
+    <div class="tag">Arduino UNO</div>
+    <div class="tag">IoT Ready</div>
+    <div class="tag">Thermal Insulation</div>
+    <div class="tag">Safety Systems</div>
+    <div class="tag">Electrical Engineering</div>
+    <div class="tag">Invention Disclosure</div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-val">98%</span><span class="stat-lbl">System Availability</span></div>
+    <div class="stat"><span class="stat-val">5.2 min</span><span class="stat-lbl">Electric Heating Time</span></div>
+    <div class="stat"><span class="stat-val">3–3.5 min</span><span class="stat-lbl">LPG Heating Time</span></div>
+    <div class="stat"><span class="stat-val">₹2.0</span><span class="stat-lbl">Cost per 5L (LPG)</span></div>
+  </div>
+</section>
+
+<!-- ABSTRACT -->
+<section id="about">
+  <p class="section-label reveal">Overview</p>
+  <h2 class="reveal">What Is This Project?</h2>
+  <p class="section-intro reveal">A research and invention disclosure on a dual-energy water heating system designed and built at SVERI's College of Engineering.</p>
+  <div class="abstract-card reveal">
+    <p>This project presents the design and development of a <strong>dual-source hybrid water geyser</strong> that operates using both LPG and electricity to provide a reliable, safe, and energy-efficient hot-water solution.</p>
+    <p>Traditional geysers depend on a single energy source, making them unreliable during power cuts or gas shortages, and increasing operating costs. The proposed system integrates both energy sources into a single unit, allowing smooth switching based on availability and user preference.</p>
+    <p>The system includes safety features such as a water-level sensor, temperature sensor, thermostat, pressure relief valve, and gas solenoid valve. LPG handles fast heating via its high thermal output, while electricity maintains controlled temperature. Thermal insulation reduces heat loss throughout.</p>
+    <div class="kw-list">
+      <span class="kw">Hybrid Water Geyser</span>
+      <span class="kw">LPG & Electricity</span>
+      <span class="kw">Automatic Switching</span>
+      <span class="kw">Reliability</span>
+      <span class="kw">Temperature Control</span>
+      <span class="kw">Gas Solenoid Valve</span>
+      <span class="kw">Energy Conservation</span>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <p class="section-label reveal">Inventors</p>
+  <h2 class="reveal">The Team</h2>
+  <p class="section-intro reveal">Department of Electrical Engineering — SVERI's College of Engineering, Pandharpur</p>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="member-no">INVENTOR 01</div>
+      <div class="member-name">Samarth Sanjay Mole</div>
+      <div class="member-role">Electrical Engineering</div>
+      <div class="member-contact">
+        <a href="mailto:samarthmole2005@gmail.com">samarthmole2005@gmail.com</a>
+        <a href="tel:9730210051">+91 97302 10051</a>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="member-no">INVENTOR 02</div>
+      <div class="member-name">Rahul Nagesh Jadhav</div>
+      <div class="member-role">Electrical Engineering</div>
+      <div class="member-contact">
+        <a href="mailto:rj479279@gmail.com">rj479279@gmail.com</a>
+        <a href="tel:7498577010">+91 74985 77010</a>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="member-no">INVENTOR 03</div>
+      <div class="member-name">Rohini Jalindar Walke</div>
+      <div class="member-role">Electrical Engineering</div>
+      <div class="member-contact">
+        <a href="mailto:rohiniwalke2005@gmail.com">rohiniwalke2005@gmail.com</a>
+        <a href="tel:9975371154">+91 99753 71154</a>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="member-no">INVENTOR 04</div>
+      <div class="member-name">Rohan Dadaso More</div>
+      <div class="member-role">Electrical Engineering</div>
+      <div class="member-contact">
+        <a href="mailto:morerohan1748@gmail.com">morerohan1748@gmail.com</a>
+        <a href="tel:9579690558">+91 95796 90558</a>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="member-no">INVENTOR 05</div>
+      <div class="member-name">Sonali Ashok Salunkhe</div>
+      <div class="member-role">Faculty Guide</div>
+      <div class="member-contact">
+        <a href="mailto:sonaliasalunkhe@coep.sveri.ac.in">sonaliasalunkhe@coep.sveri.ac.in</a>
+        <a href="tel:8421714373">+91 84217 14373</a>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="member-no">SUPERVISOR</div>
+      <div class="member-name">Mohan Thakre</div>
+      <div class="member-role">Walchand College of Engineering, Sangli</div>
+      <div class="member-contact">
+        <a href="mailto:mohanthakre@gmail.com">mohanthakre@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM STATEMENT -->
+<section id="problem">
+  <p class="section-label reveal">Problem Statement</p>
+  <h2 class="reveal">Problems We Solved</h2>
+  <p class="section-intro reveal">Conventional single-source geysers create multiple reliability, safety, and efficiency challenges.</p>
+  <div class="prob-grid">
+    <div class="prob-card reveal"><div class="prob-icon">⚡</div><div><div class="prob-title">Power Cut Issues</div><div class="prob-desc">Electric geysers become completely useless during frequent power outages, leaving users without hot water.</div></div></div>
+    <div class="prob-card reveal"><div class="prob-icon">🔥</div><div><div class="prob-title">Gas Shortage Problems</div><div class="prob-desc">LPG-only heaters stop working when the cylinder runs out, with no backup available.</div></div></div>
+    <div class="prob-card reveal"><div class="prob-icon">🔄</div><div><div class="prob-title">No Backup System</div><div class="prob-desc">Traditional systems have zero alternative source — leading to downtime and user inconvenience.</div></div></div>
+    <div class="prob-card reveal"><div class="prob-icon">💰</div><div><div class="prob-title">Limited Flexibility</div><div class="prob-desc">Users can't choose between energy sources based on availability, cost, or heating speed.</div></div></div>
+    <div class="prob-card reveal"><div class="prob-icon">🌡️</div><div><div class="prob-title">Safety Concerns</div><div class="prob-desc">Lack of integrated safety — overheating, gas leakage, dry heating risks in standalone systems.</div></div></div>
+    <div class="prob-card reveal"><div class="prob-icon">♻️</div><div><div class="prob-title">Energy Inefficiency</div><div class="prob-desc">No intelligent source selection leads to unnecessary energy wastage and higher operating costs.</div></div></div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components">
+  <p class="section-label reveal">System Design</p>
+  <h2 class="reveal">Key Components</h2>
+  <p class="section-intro reveal">12 carefully integrated components form the brain, body, and safety net of the hybrid geyser.</p>
+  <div class="comp-grid">
+    <div class="comp-card reveal"><div class="comp-num">COMP 01</div><div class="comp-name">Storage Tank</div><div class="comp-desc">Corrosion-resistant tank to store and heat water reliably.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 02</div><div class="comp-name">Electric Immersion Heater (3 kW)</div><div class="comp-desc">Provides controlled, uniform electric heating.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 03</div><div class="comp-name">LPG Burner</div><div class="comp-desc">High-thermal-output burner for fast heating via direct flame.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 04</div><div class="comp-name">Gas Solenoid Valve</div><div class="comp-desc">Automatically controls LPG flow for safe operation.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 05</div><div class="comp-name">Arduino UNO (Hybrid Controller)</div><div class="comp-desc">Brain of the system — manages source switching, sensors, and safety interlocking.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 06</div><div class="comp-name">Float Level Switch</div><div class="comp-desc">Detects tank water level; prevents dangerous dry-heating.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 07</div><div class="comp-name">DS18B20 Temperature Sensor</div><div class="comp-desc">Waterproof digital probe monitors water temperature in real time.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 08</div><div class="comp-name">Thermostat</div><div class="comp-desc">Cuts off heating automatically once preset temperature is reached.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 09</div><div class="comp-name">Pressure Relief Valve (PRV)</div><div class="comp-desc">Releases excess tank pressure to prevent damage or explosion.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 10</div><div class="comp-name">SSR — 40A Solid State Relay</div><div class="comp-desc">Controls high-power AC loads (immersion heater) with no moving parts.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 11</div><div class="comp-name">AC Voltage Detection Module</div><div class="comp-desc">Detects if electricity is available; alerts controller on power cuts.</div></div>
+    <div class="comp-card reveal"><div class="comp-num">COMP 12</div><div class="comp-name">Rock Wool / Ceramic Fiber Insulation</div><div class="comp-desc">Surrounds the tank to minimize heat loss and improve energy efficiency.</div></div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section id="methodology">
+  <p class="section-label reveal">How It Works</p>
+  <h2 class="reveal">System Workflow</h2>
+  <p class="section-intro reveal">A structured 12-step automated process from startup to hot water delivery.</p>
+  <div class="steps">
+    <div class="step reveal"><div class="step-dot">01</div><div class="step-content"><div class="step-title">System Start</div><div class="step-body">Hybrid controller activates when system is switched ON. Safety checks begin immediately.</div></div></div>
+    <div class="step reveal"><div class="step-dot">02</div><div class="step-content"><div class="step-title">Water Level Check</div><div class="step-body">Float sensor verifies sufficient water in tank. Low water level halts the system to prevent dry-heating damage.</div></div></div>
+    <div class="step reveal"><div class="step-dot">03</div><div class="step-content"><div class="step-title">Energy Source Availability Check</div><div class="step-body">Controller checks if electricity and/or LPG are available for use.</div></div></div>
+    <div class="step reveal"><div class="step-dot">04</div><div class="step-content"><div class="step-title">Mode Selection</div><div class="step-body">If both sources available, user selects preferred mode. If only one source available, system auto-selects it.</div></div></div>
+    <div class="step reveal"><div class="step-dot">05</div><div class="step-content"><div class="step-title">Heating Activated</div><div class="step-body">Selected source (electric or LPG) begins heating. Interlocking ensures only one source runs at a time.</div></div></div>
+    <div class="step reveal"><div class="step-dot">06</div><div class="step-content"><div class="step-title">Temperature Monitoring</div><div class="step-body">Sensors continuously monitor water temperature and report to controller.</div></div></div>
+    <div class="step reveal"><div class="step-dot">07</div><div class="step-content"><div class="step-title">Source Failure Detection</div><div class="step-body">If active source fails (power cut or gas depletion), controller detects it instantly.</div></div></div>
+    <div class="step reveal"><div class="step-dot">08</div><div class="step-content"><div class="step-title">Auto Backup Switching</div><div class="step-body">On failure, system automatically switches to the backup source — no manual intervention needed.</div></div></div>
+    <div class="step reveal"><div class="step-dot">09</div><div class="step-content"><div class="step-title">Temperature Target Reached</div><div class="step-body">Once preset temperature is achieved, heating stops automatically to save energy.</div></div></div>
+    <div class="step reveal"><div class="step-dot">10</div><div class="step-content"><div class="step-title">Hot Water Delivery</div><div class="step-body">Heated water is delivered via outlet for domestic or commercial use.</div></div></div>
+    <div class="step reveal"><div class="step-dot">11</div><div class="step-content"><div class="step-title">System Standby / OFF</div><div class="step-body">System enters standby after heating cycle. Turns OFF safely to prevent overheating and extend life.</div></div></div>
+    <div class="step reveal"><div class="step-dot">12</div><div class="step-content"><div class="step-title">LPG Exhaust Handling</div><div class="step-body">Combustion gases safely discharged via exhaust and flue outlet built into system.</div></div></div>
+  </div>
+</section>
+
+<!-- MATH / ANALYSIS -->
+<section id="math">
+  <p class="section-label reveal">Mathematical Analysis</p>
+  <h2 class="reveal">Performance Calculations</h2>
+  <p class="section-intro reveal">Heating 5 kg of water from 25°C to 70°C (ΔT = 45°C, Q = 942 kJ).</p>
+  <div class="math-grid">
+    <div class="math-card reveal">
+      <div class="math-heading">⚡ Electric Heater (3 kW)</div>
+      <div class="math-row"><span class="math-param">Heat Required (Q)</span><span class="math-val">942 kJ</span></div>
+      <div class="math-row"><span class="math-param">Heating Time (t)</span><span class="math-val">314 s (5.2 min)</span></div>
+      <div class="math-row"><span class="math-param">Energy Consumed (E)</span><span class="math-val">0.26 kWh</span></div>
+      <div class="math-row"><span class="math-param">Heater Power</span><span class="math-val">3 kW</span></div>
+    </div>
+    <div class="math-card reveal">
+      <div class="math-heading">🔥 LPG Heater (2 kW, 70% η)</div>
+      <div class="math-row"><span class="math-param">Effective Power (P_eff)</span><span class="math-val">1.4 kW</span></div>
+      <div class="math-row"><span class="math-param">Heating Time (t)</span><span class="math-val">673 s (11.2 min)</span></div>
+      <div class="math-row"><span class="math-param">LPG Consumed</span><span class="math-val">30 g (0.03 kg)</span></div>
+      <div class="math-row"><span class="math-param">LPG Calorific Value</span><span class="math-val">46,000 kJ/kg</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <p class="section-label reveal">Results & Discussion</p>
+  <h2 class="reveal">Performance Outcomes</h2>
+  <p class="section-intro reveal">Experimental analysis comparing electric mode, LPG mode, and the hybrid system.</p>
+
+  <div class="perf-grid" style="margin-bottom:56px;">
+    <div class="perf-card reveal">
+      <div class="perf-number">3–3.5</div>
+      <div class="perf-unit">minutes</div>
+      <div class="perf-label">LPG Heating (5L to 65°C)</div>
+      <div class="perf-desc">Fastest mode — high-output direct flame heating.</div>
+    </div>
+    <div class="perf-card reveal">
+      <div class="perf-number">~6</div>
+      <div class="perf-unit">minutes</div>
+      <div class="perf-label">Electric Heating (5L to 65°C)</div>
+      <div class="perf-desc">Controlled, stable temperature rise.</div>
+    </div>
+    <div class="perf-card reveal">
+      <div class="perf-number">₹2.0</div>
+      <div class="perf-unit">per 5L</div>
+      <div class="perf-label">LPG Cost (vs ₹2.3 Electric)</div>
+      <div class="perf-desc">LPG is slightly more economical per cycle.</div>
+    </div>
+  </div>
+
+  <p class="section-label reveal" style="margin-bottom:16px;">System Availability Comparison</p>
+  <div class="compare-block reveal">
+    <div class="compare-row">
+      <div class="compare-header"><span class="compare-name">Electric Only</span><span class="compare-pct">~70%</span></div>
+      <div class="bar-bg"><div class="bar-fill bar-elec" style="width:70%"></div></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-header"><span class="compare-name">LPG Only</span><span class="compare-pct">~75%</span></div>
+      <div class="bar-bg"><div class="bar-fill bar-fire" style="width:75%"></div></div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-header"><span class="compare-name">Hybrid System (This Project)</span><span class="compare-pct">~98%</span></div>
+      <div class="bar-bg"><div class="bar-fill bar-hybrid" style="width:98%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIFICATIONS -->
+<section id="specs">
+  <p class="section-label reveal">Technical Specs</p>
+  <h2 class="reveal">Specifications</h2>
+  <p class="section-intro reveal">Key parameters of the dual-source hybrid water geyser system.</p>
+  <div class="spec-grid">
+    <div class="spec-card reveal"><div class="spec-label">Power Supply</div><div class="spec-value">220V–240V AC + LPG</div></div>
+    <div class="spec-card reveal"><div class="spec-label">Electric Heater Power</div><div class="spec-value">3 kW</div></div>
+    <div class="spec-card reveal"><div class="spec-label">LPG Heater Power</div><div class="spec-value">2 kW (70% η)</div></div>
+    <div class="spec-card reveal"><div class="spec-label">Heating Capacity</div><div class="spec-value">10L / 20L / 50L models</div></div>
+    <div class="spec-card reveal"><div class="spec-label">Temperature Range</div><div class="spec-value">30°C – 75°C</div></div>
+    <div class="spec-card reveal"><div class="spec-label">Temperature Control</div><div class="spec-value">Digital thermostat</div></div>
+    <div class="spec-card reveal"><div class="spec-label">Control Unit</div><div class="spec-value">Arduino UNO</div></div>
+    <div class="spec-card reveal"><div class="spec-label">System Availability</div><div class="spec-value">~98%</div></div>
+    <div class="spec-card reveal"><div class="spec-label">Insulation Type</div><div class="spec-value">Rock Wool + Ceramic Fiber</div></div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section id="advantages">
+  <p class="section-label reveal">Innovations</p>
+  <h2 class="reveal">Why This Is Different</h2>
+  <p class="section-intro reveal">Features not obvious to persons skilled in conventional water heating technology.</p>
+  <div class="adv-grid">
+    <div class="adv-card reveal"><div class="adv-icon">🔀</div><div class="adv-title">Dual-Source in One Unit</div><div class="adv-body">Combining LPG and electric heating in a single storage tank is uncommon and requires careful coordinated design.</div></div>
+    <div class="adv-card reveal"><div class="adv-icon">🤖</div><div class="adv-title">Automatic Intelligent Switching</div><div class="adv-body">Detects source failure and switches to backup without any manual intervention — seamlessly.</div></div>
+    <div class="adv-card reveal"><div class="adv-icon">🔒</div><div class="adv-title">Interlocking Mechanism</div><div class="adv-body">Both sources cannot operate simultaneously. Coordinated control improves safety and prevents energy conflicts.</div></div>
+    <div class="adv-card reveal"><div class="adv-icon">🛡️</div><div class="adv-title">Advanced Safety Integration</div><div class="adv-body">Water level, temperature, pressure, gas solenoid, and thermal fuse — all combined in one hybrid setup.</div></div>
+    <div class="adv-card reveal"><div class="adv-icon">💡</div><div class="adv-title">Energy Flexibility</div><div class="adv-body">Users can select the most economical or available source — not possible with any conventional geyser.</div></div>
+    <div class="adv-card reveal"><div class="adv-icon">📱</div><div class="adv-title">IoT Ready</div><div class="adv-body">Architecture supports smart sensor integration and potential remote monitoring/control via mobile app.</div></div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="applications">
+  <p class="section-label reveal">Applications</p>
+  <h2 class="reveal">Who Benefits?</h2>
+  <p class="section-intro reveal">From rural homes to industrial plants — the hybrid geyser delivers value across sectors.</p>
+  <div class="app-section-grid">
+    <div class="app-section-card reveal">
+      <div class="app-section-title"><span class="app-section-icon">🏠</span>Residential</div>
+      <ul class="app-list">
+        <li>Households & Apartments</li>
+        <li>Smart Homes</li>
+        <li>Off-Grid & Rural Areas</li>
+      </ul>
+    </div>
+    <div class="app-section-card reveal">
+      <div class="app-section-title"><span class="app-section-icon">🏨</span>Commercial</div>
+      <ul class="app-list">
+        <li>Hotels & Resorts</li>
+        <li>Restaurants & Cafes</li>
+        <li>Hospitals & Clinics</li>
+        <li>Hostels & Dormitories</li>
+      </ul>
+    </div>
+    <div class="app-section-card reveal">
+      <div class="app-section-title"><span class="app-section-icon">🏭</span>Industrial</div>
+      <ul class="app-list">
+        <li>Factories & Plants</li>
+        <li>Textile Industry</li>
+        <li>Food Processing Units</li>
+      </ul>
+    </div>
+    <div class="app-section-card reveal">
+      <div class="app-section-title"><span class="app-section-icon">🏛️</span>Public & Institutional</div>
+      <ul class="app-list">
+        <li>Schools & Colleges</li>
+        <li>Government Buildings</li>
+        <li>Military & Defense</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+  <p class="section-label reveal">Conclusion</p>
+  <h2 class="reveal">Final Thoughts</h2>
+  <p class="section-intro reveal">A smart, sustainable, and future-ready approach to modern water-heating needs.</p>
+  <div class="conclusion-card reveal">
+    <p>The Dual-Source Hybrid Water Geyser project effectively tackles the typical issues encountered by conventional water heating systems. Traditional geysers rely on a single energy source, which frequently causes problems during gas shortages or power outages. By integrating electricity and LPG into a single, intelligent system, this project guarantees a steady supply of hot water regardless of which source is available.</p>
+    <br/>
+    <p>The system is dependable, effective, and user-safe due to automatic switching, appropriate safety features, and efficient thermal insulation. Performance analysis, reliability comparison, and cost evaluation demonstrate that the hybrid system is more flexible and reliable than single-source geysers — with ~98% availability vs ~70% for electric-only systems.</p>
+    <br/>
+    <p>This project provides a straightforward but effective solution for home and small commercial applications, with increased availability, improved energy management, and practical viability. Overall, it represents a modern and intelligent approach toward safe, flexible, and efficient water-heating technology.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">Dual-Source Hybrid Water Geyser</div>
+  <div class="footer-inst">Department of Electrical Engineering — SVERI's College of Engineering, Pandharpur, India</div>
+  <div>
+    Samarth Mole <span class="divider">·</span>
+    Rahul Jadhav <span class="divider">·</span>
+    Rohini Walke <span class="divider">·</span>
+    Rohan More <span class="divider">·</span>
+    Sonali Salunkhe <span class="divider">·</span>
+    Mohan Thakre
+  </div>
+  <br/>
+  <div style="color:#3a4050;">© 2025 — Invention Disclosure Portfolio</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
